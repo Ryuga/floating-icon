@@ -70,3 +70,4 @@ To add the floating icon link to your webpage, call the `createFloatingIconLink`
 | `left`            | `string` | Left position value                                       | null                           |
 | `right`           | `string` | Right position value                                      | `20px`                         |
 | `fontSize`        | `string` | Font size for text (number)                               | 24                             |
+| `padding`         | `string` | Padding value for the text content                        | 24                             |

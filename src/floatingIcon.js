@@ -11,6 +11,9 @@
     link = "#", // Link for the element to navigate to
     bottom = "20px", // Default bottom position
     right = "20px", // Default right position
+    left = null, // Default left position
+    top = null, // Default top position
+    fontSize = "24px",
   } = {}) {
     // Inject CSS dynamically
     const style = document.createElement("style");
@@ -19,10 +22,12 @@
         position: fixed;
         bottom: ${bottom};
         right: ${right};
+        top: ${top};
+        left: ${left};
         padding: 10px;
         border-radius: 25px;
         box-shadow: ${shadowEffect};
-        font-size: 16px;
+        font-size: ${fontSize};
         z-index: 1000;
         display: flex;
         align-items: center;
@@ -45,7 +50,7 @@
       }
 
       #floatingIconLink i {
-        font-size: 24px; /* Adjust icon size */
+        font-size: ${fontSize}; /* Adjust icon size */
         margin-right: 8px; /* Add space between the icon and text */
       }
 

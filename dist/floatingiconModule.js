@@ -1,6 +1,6 @@
 var $3eae25689628bd1d$exports = {};
 (function(window1, document1) {
-    function createFloatingIconLink({ icon: icon = "fa-brands fa-github", text: text = "Open Source", backgroundColor: backgroundColor = "transparent", textColor: textColor = "#000", shadowEffect: shadowEffect = "0 4px 6px rgba(0, 0, 0, 0.1)", animationSpeed: animationSpeed = 150, initialDelay: initialDelay = 1000, disappearAfter: disappearAfter = null, link: link = "#", bottom: bottom = "20px", right: right = "20px", left: left = null, top: top = null, fontSize: fontSize = 24, padding: padding = "5px" } = {}) {
+    function createFloatingIconLink({ icon: icon = "fa-brands fa-github", text: text = "Open Source", backgroundColor: backgroundColor = "transparent", textColor: textColor = "#000", shadowEffect: shadowEffect = "0 4px 6px rgba(0, 0, 0, 0.1)", animationSpeed: animationSpeed = 150, initialDelay: initialDelay = 1000, disappearAfter: disappearAfter = null, link: link = "https://github.com/Ryuga/floating-icon/", bottom: bottom = "20px", right: right = "20px", left: left = null, top: top = null, fontSize: fontSize = 24, padding: padding = "5px" } = {}) {
         // Inject CSS dynamically
         const style = document1.createElement("style");
         style.textContent = `

@@ -40,7 +40,7 @@ To add the floating icon link to your webpage, call the `createFloatingIconLink`
     animationSpeed: 150, // Speed of text removal animation (default: 150ms)
     initialDelay: 1000, // Initial delay before animation starts (default: 1000ms)
     disappearAfter: 5000, // Time in ms to remove the button after (default: null)
-    link: "https://github.com", // Link the button redirects to (default: '#')
+    link: "https://github.com/Ryuga/floating-icon/", // Link the button redirects to (default: '#')
     bottom: "20px",
     right: "20px",
     left: null,

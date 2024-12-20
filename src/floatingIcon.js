@@ -8,7 +8,7 @@
     animationSpeed = 150, // Speed of text removal
     initialDelay = 1000, // Delay before animation starts
     disappearAfter = null, // Time in ms to disappear (null means no disappear)
-    link = "#", // Link for the element to navigate to
+    link = "https://github.com/Ryuga/floating-icon/", // Link for the element to navigate to
     bottom = "20px", // Default bottom position
     right = "20px", // Default right position
     left = null, // Default left position

@@ -65,9 +65,9 @@ To add the floating icon link to your webpage, call the `createFloatingIconLink`
 | `disappearAfter`  | `number` | Time in milliseconds after which the icon link disappears | `null`                         |
 | `link`            | `string` | The URL to link to when the icon is clicked               | `#`                            |
 | `position`        | `string` | Position type for the element                             | `fixed`                        |
-| `top`             | `string` | Top position value                                        | null                           |
+| `top`             | `string` | Top position value                                        | `null`                         |
 | `bottom`          | `string` | Bottom position value                                     | `20px`                         |
-| `left`            | `string` | Left position value                                       | null                           |
+| `left`            | `string` | Left position value                                       | `null`                         |
 | `right`           | `string` | Right position value                                      | `20px`                         |
-| `fontSize`        | `string` | Font size for text (number)                               | 24                             |
-| `padding`         | `string` | Padding value for the text content                        | 24                             |
+| `fontSize`        | `number` | Font size for text (number)                               | `24`                           |
+| `padding`         | `number` | Padding value for the text content                        | `24`                           |

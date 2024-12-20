@@ -1,3 +1,4 @@
+var $3eae25689628bd1d$exports = {};
 (function(window1, document1) {
     function createFloatingIconLink({ icon: icon = "fa-brands fa-github", text: text = "Open Source", backgroundColor: backgroundColor = "transparent", textColor: textColor = "#000", shadowEffect: shadowEffect = "0 4px 6px rgba(0, 0, 0, 0.1)", animationSpeed: animationSpeed = 150, initialDelay: initialDelay = 1000, disappearAfter: disappearAfter = null, link: link = "#", bottom: bottom = "20px", right: right = "20px" } = {}) {
         // Inject CSS dynamically
@@ -107,4 +108,5 @@
 })(window, document);
 
 
-//# sourceMappingURL=floatingicon.js.map
+export {$3eae25689628bd1d$exports as default};
+//# sourceMappingURL=floatingiconModule.js.map

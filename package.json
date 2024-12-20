@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "source": "src/floatingicon.js",
   "main": "dist/floatingicon.js",
+  "module": "dist/floatingiconModule.js",
   "scripts": {
-    "build": "parcel build src/floatingicon.js --dist-dir dist --no-source-maps"
   },
   "keywords": [],
   "author": "",

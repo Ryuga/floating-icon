@@ -1,0 +1,16 @@
+{
+  "name": "floatingicon",
+  "version": "1.0.0",
+  "source": "src/floatingicon.js",
+  "main": "dist/floatingicon.js",
+  "scripts": {
+    "build": "parcel build src/floatingicon.js --dist-dir dist --no-source-maps"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "parcel": "^2.13.3"
+  }
+}

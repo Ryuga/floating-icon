@@ -14,6 +14,7 @@
     left = null, // Default left position
     top = null, // Default top position
     fontSize = "24px",
+    padding = "5px",
   } = {}) {
     // Inject CSS dynamically
     const style = document.createElement("style");
@@ -24,7 +25,7 @@
         right: ${right};
         top: ${top};
         left: ${left};
-        padding: 10px;
+        padding: ${padding};
         border-radius: 25px;
         box-shadow: ${shadowEffect};
         font-size: ${fontSize};
@@ -95,6 +96,7 @@
 
       let text = textElement.textContent;
       let index = 0;
+      let interval;
 
       function updateShadow() {
         const textWidth = textElement.offsetWidth;
@@ -133,7 +135,7 @@
       }
 
       setTimeout(() => {
-        const interval = setInterval(removeText, animationSpeed);
+        interval = setInterval(removeText, animationSpeed);
       }, initialDelay);
 
       if (disappearAfter) {

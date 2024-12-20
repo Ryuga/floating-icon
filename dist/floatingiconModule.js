@@ -1,6 +1,6 @@
 var $3eae25689628bd1d$exports = {};
 (function(window1, document1) {
-    function createFloatingIconLink({ icon: icon = "fa-brands fa-github", text: text = "Open Source", backgroundColor: backgroundColor = "transparent", textColor: textColor = "#000", shadowEffect: shadowEffect = "0 4px 6px rgba(0, 0, 0, 0.1)", animationSpeed: animationSpeed = 150, initialDelay: initialDelay = 1000, disappearAfter: disappearAfter = null, link: link = "#", bottom: bottom = "20px", right: right = "20px", left: left = null, top: top = null, fontSize: fontSize = "24px" } = {}) {
+    function createFloatingIconLink({ icon: icon = "fa-brands fa-github", text: text = "Open Source", backgroundColor: backgroundColor = "transparent", textColor: textColor = "#000", shadowEffect: shadowEffect = "0 4px 6px rgba(0, 0, 0, 0.1)", animationSpeed: animationSpeed = 150, initialDelay: initialDelay = 1000, disappearAfter: disappearAfter = null, link: link = "#", bottom: bottom = "20px", right: right = "20px", left: left = null, top: top = null, fontSize: fontSize = "24px", padding: padding = "5px" } = {}) {
         // Inject CSS dynamically
         const style = document1.createElement("style");
         style.textContent = `
@@ -10,7 +10,7 @@ var $3eae25689628bd1d$exports = {};
         right: ${right};
         top: ${top};
         left: ${left};
-        padding: 10px;
+        padding: ${padding};
         border-radius: 25px;
         box-shadow: ${shadowEffect};
         font-size: ${fontSize};
@@ -73,6 +73,7 @@ var $3eae25689628bd1d$exports = {};
             const svgElement = document1.querySelector("#floatingIconLink svg");
             let text = textElement.textContent;
             let index = 0;
+            let interval;
             function updateShadow() {
                 const textWidth = textElement.offsetWidth;
                 const maxWidth = 50;
@@ -99,7 +100,7 @@ var $3eae25689628bd1d$exports = {};
                 } else clearInterval(interval);
             }
             setTimeout(()=>{
-                const interval1 = setInterval(removeText, animationSpeed);
+                interval = setInterval(removeText, animationSpeed);
             }, initialDelay);
             if (disappearAfter) setTimeout(()=>{
                 buttonElement.style.display = "none";

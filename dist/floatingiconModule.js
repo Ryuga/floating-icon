@@ -1,6 +1,6 @@
 var $3eae25689628bd1d$exports = {};
 (function(window1, document1) {
-    function createFloatingIconLink({ icon: icon = "fa-brands fa-github", text: text = "Open Source", backgroundColor: backgroundColor = "transparent", textColor: textColor = "#000", shadowEffect: shadowEffect = "0 4px 6px rgba(0, 0, 0, 0.1)", animationSpeed: animationSpeed = 150, initialDelay: initialDelay = 1000, disappearAfter: disappearAfter = null, link: link = "#", bottom: bottom = "20px", right: right = "20px", left: left = null, top: top = null, fontSize: fontSize = "24px", padding: padding = "5px" } = {}) {
+    function createFloatingIconLink({ icon: icon = "fa-brands fa-github", text: text = "Open Source", backgroundColor: backgroundColor = "transparent", textColor: textColor = "#000", shadowEffect: shadowEffect = "0 4px 6px rgba(0, 0, 0, 0.1)", animationSpeed: animationSpeed = 150, initialDelay: initialDelay = 1000, disappearAfter: disappearAfter = null, link: link = "#", bottom: bottom = "20px", right: right = "20px", left: left = null, top: top = null, fontSize: fontSize = 24, padding: padding = "5px" } = {}) {
         // Inject CSS dynamically
         const style = document1.createElement("style");
         style.textContent = `
@@ -13,7 +13,7 @@ var $3eae25689628bd1d$exports = {};
         padding: ${padding};
         border-radius: 25px;
         box-shadow: ${shadowEffect};
-        font-size: ${fontSize};
+        font-size: ${fontSize - 2}px;
         z-index: 1000;
         display: flex;
         align-items: center;
@@ -36,7 +36,7 @@ var $3eae25689628bd1d$exports = {};
       }
 
       #floatingIconLink i {
-        font-size: ${fontSize}; /* Adjust icon size */
+        font-size: ${fontSize}px; /* Adjust icon size */
         margin-right: 8px; /* Add space between the icon and text */
       }
 

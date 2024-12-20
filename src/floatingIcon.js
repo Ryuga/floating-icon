@@ -13,7 +13,7 @@
     right = "20px", // Default right position
     left = null, // Default left position
     top = null, // Default top position
-    fontSize = "24px",
+    fontSize = 24,
     padding = "5px",
   } = {}) {
     // Inject CSS dynamically
@@ -28,7 +28,7 @@
         padding: ${padding};
         border-radius: 25px;
         box-shadow: ${shadowEffect};
-        font-size: ${fontSize};
+        font-size: ${fontSize - 2}px;
         z-index: 1000;
         display: flex;
         align-items: center;
@@ -51,7 +51,7 @@
       }
 
       #floatingIconLink i {
-        font-size: ${fontSize}; /* Adjust icon size */
+        font-size: ${fontSize}px; /* Adjust icon size */
         margin-right: 8px; /* Add space between the icon and text */
       }
 

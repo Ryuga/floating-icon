@@ -41,6 +41,8 @@ To add the floating icon link to your webpage, call the `createFloatingIconLink`
     initialDelay: 1000, // Initial delay before animation starts (default: 1000ms)
     disappearAfter: 5000, // Time in ms to remove the button after (default: null)
     link: "https://github.com/Ryuga/floating-icon/", // Link the button redirects to (default: '#')
+    animate: false, // adds a simple spinning animation,
+    keepClosed: false, // Displays jus the icon if set to true.
     bottom: "20px",
     right: "20px",
     left: null,
@@ -53,21 +55,23 @@ To add the floating icon link to your webpage, call the `createFloatingIconLink`
 
 ### Options
 
-| Option            | Type     | Description                                               | Default                        |
-| ----------------- | -------- | --------------------------------------------------------- | ------------------------------ |
-| `icon`            | `string` | Icon to display (either Font Awesome class or SVG)        | `fa-brands fa-github`          |
-| `text`            | `string` | Text to display alongside the icon                        | `Open Source`                  |
-| `backgroundColor` | `string` | Background color of the button (CSS valid color)          | `transparent`                  |
-| `textColor`       | `string` | Color of the text (CSS valid color)                       | `#000`                         |
-| `shadowEffect`    | `string` | Box-shadow CSS property                                   | `0 4px 6px rgba(0, 0, 0, 0.1)` |
-| `animationSpeed`  | `number` | Speed of text disappearance animation in milliseconds     | `150`                          |
-| `initialDelay`    | `number` | Delay in milliseconds before starting the text animation  | `1000`                         |
-| `disappearAfter`  | `number` | Time in milliseconds after which the icon link disappears | `null`                         |
-| `link`            | `string` | The URL to link to when the icon is clicked               | `#`                            |
-| `position`        | `string` | Position type for the element                             | `fixed`                        |
-| `top`             | `string` | Top position value                                        | `null`                         |
-| `bottom`          | `string` | Bottom position value                                     | `20px`                         |
-| `left`            | `string` | Left position value                                       | `null`                         |
-| `right`           | `string` | Right position value                                      | `20px`                         |
-| `fontSize`        | `number` | Font size for text (number)                               | `24`                           |
-| `padding`         | `number` | Padding value for the text content                        | `24`                           |
+| Option            | Type      | Description                                               | Default                        |
+| ----------------- | --------- | --------------------------------------------------------- | ------------------------------ |
+| `icon`            | `string`  | Icon to display (either Font Awesome class or SVG)        | `fa-brands fa-github`          |
+| `text`            | `string`  | Text to display alongside the icon                        | `Open Source`                  |
+| `backgroundColor` | `string`  | Background color of the button (CSS valid color)          | `transparent`                  |
+| `textColor`       | `string`  | Color of the text (CSS valid color)                       | `#000`                         |
+| `shadowEffect`    | `string`  | Box-shadow CSS property                                   | `0 4px 6px rgba(0, 0, 0, 0.1)` |
+| `animationSpeed`  | `number`  | Speed of text disappearance animation in milliseconds     | `150`                          |
+| `initialDelay`    | `number`  | Delay in milliseconds before starting the text animation  | `1000`                         |
+| `disappearAfter`  | `number`  | Time in milliseconds after which the icon link disappears | `null`                         |
+| `link`            | `string`  | The URL to link to when the icon is clicked               | `#`                            |
+| `position`        | `string`  | Position type for the element                             | `fixed`                        |
+| `top`             | `string`  | Top position value                                        | `null`                         |
+| `bottom`          | `string`  | Bottom position value                                     | `20px`                         |
+| `left`            | `string`  | Left position value                                       | `null`                         |
+| `right`           | `string`  | Right position value                                      | `20px`                         |
+| `fontSize`        | `number`  | Font size for text (number)                               | `24`                           |
+| `padding`         | `number`  | Padding value for the text content                        | `24`                           |
+| `animate`         | `boolean` | Adds a simple spinning animation                          | `false`                        |
+| `keepClosed`      | `boolean` | Displays just the icon if set to true                     | `false`                        |

@@ -1,149 +1,182 @@
 (function (window, document) {
+  const faScriptId = "font-awesome-floaticon";
+  if (!document.getElementById(faScriptId)) {
+    const script = document.createElement("script");
+    script.id = faScriptId;
+    script.src = "https://kit.fontawesome.com/7eae56138c.js";
+    script.crossOrigin = "anonymous";
+    document.head.appendChild(script);
+  }
+
   function createFloatingIconLink({
-    icon = "fa-brands fa-github", // Default FontAwesome icon
-    text = "Open Source", // Default text
-    backgroundColor = "transparent", // Default background color
-    textColor = "#000", // Default text color
-    shadowEffect = "0 4px 6px rgba(0, 0, 0, 0.1)", // Default shadow effect
-    animationSpeed = 150, // Speed of text removal
-    initialDelay = 1000, // Delay before animation starts
-    disappearAfter = null, // Time in ms to disappear (null means no disappear)
-    link = "https://github.com/Ryuga/floating-icon/", // Link for the element to navigate to
-    bottom = "20px", // Default bottom position
-    right = "20px", // Default right position
-    left = null, // Default left position
-    top = null, // Default top position
-    fontSize = 24,
-    padding = "5px",
+    icon = "fa-brands fa-github",
+    text = "Open Source",
+    backgroundColor = "#ffffff",
+    textColor = "#0f172a",
+    shadowEffect = "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)", // Modern soft shadow
+    initialDelay = 2500,
+    disappearAfter = null,
+    link = "https://github.com/Ryuga/floating-icon/",
+    bottom = "24px",
+    right = "24px",
+    left = null,
+    top = null,
+    fontSize = 20,
+    animate = false,
+    keepClosed = false,
   } = {}) {
-    // Inject CSS dynamically
-    const style = document.createElement("style");
-    style.textContent = `
-      #floatingIconLink {
-        position: fixed;
-        bottom: ${bottom};
-        right: ${right};
-        top: ${top};
-        left: ${left};
-        padding: ${padding};
-        border-radius: 25px;
-        box-shadow: ${shadowEffect};
-        font-size: ${fontSize - 2}px;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: opacity 0.3s ease, transform 0.3s ease, width 0.3s ease, box-shadow 0.3s ease, border-radius 0.3s ease;
-        background-color: ${backgroundColor};
-        color: ${textColor};
-        width: auto;
-        overflow: hidden;
-        cursor: pointer;
-        text-decoration: none;
-      }
+    const existing = document.getElementById("floatingIconLink");
+    if (existing) existing.remove();
 
-      #floatingIconLink svg {
-        display: inline-block;  /* Ensure the SVG is inline */
-        width: 24px;
-        height: 24px;
-        margin-right: 8px; /* Space between the icon and text */
-        vertical-align: middle; /* Align with the text */
-      }
+    const styleId = "floatingIconLink-styles";
+    if (!document.getElementById(styleId)) {
+      const style = document.createElement("style");
+      style.id = styleId;
+      style.textContent = `
+        #floatingIconLink {
+          position: fixed;
+          bottom: ${bottom};
+          right: ${right};
+          top: ${top};
+          left: ${left};
+          border-radius: 50px; /* High border-radius creates pill/circle shapes */
+          box-shadow: ${shadowEffect};
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: ${backgroundColor};
+          color: ${textColor};
+          cursor: pointer;
+          text-decoration: none;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+          transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                      box-shadow 0.3s ease, 
+                      opacity 0.4s ease;
+          padding: 3px;
+          box-sizing: border-box;
+        }
 
-      #floatingIconLink i {
-        font-size: ${fontSize}px; /* Adjust icon size */
-        margin-right: 8px; /* Add space between the icon and text */
-      }
+        /* Hover Lift Effect */
+        #floatingIconLink:hover {
+          transform: translateY(-3px) scale(1.02);
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
 
-      #floatingIconLink span {
-        display: inline; 
-        white-space: nowrap; 
-        opacity: 1;
-        transition: opacity 0.2s ease; 
-      }
+        /* --- New Spinning Light Animation --- */
+        #floatingIconLink.animated::before {
+          content: '';
+          position: absolute;
+          inset: -2px;
+          border-radius: inherit;
+          /* Comet-tail gradient effect */
+          background: conic-gradient(transparent 60%, #3b82f6 90%, transparent 100%);
+          animation: fl-spin 2s linear infinite;
+          z-index: -2;
+        }
 
-      #floatingIconLink:hover {
-        transform: scale(1.1);
-        opacity: 0.9;
-      }
-    `;
-    document.head.appendChild(style);
+        /* Inner background to mask the glowing ring */
+        #floatingIconLink.animated::after {
+          content: '';
+          position: absolute;
+          inset: 0px;
+          background-color: ${backgroundColor};
+          border-radius: inherit;
+          z-index: -1;
+        }
 
-    // Create the element and inject it into the page
+        @keyframes fl-spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        /* --- Component Layout --- */
+        .fl-content {
+          display: flex;
+          align-items: center;
+          z-index: 1; /* Stay above the animated backgrounds */
+        }
+
+        .fl-icon-wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: ${fontSize + 4}px;
+          height: ${fontSize + 4}px;
+          font-size: ${fontSize}px;
+        }
+
+        .fl-icon-wrapper svg {
+          width: 100%;
+          height: 100%;
+        }
+
+        .fl-text-wrapper {
+          white-space: nowrap;
+          overflow: hidden;
+          font-size: 14px;
+          font-weight: 500;
+          max-width: 250px;
+          opacity: 1;
+          margin-left: 10px;
+          margin-right: 4px;
+          /* Smooth transition handles the morphing from Pill -> Circle */
+          transition: max-width 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                      opacity 0.4s ease, 
+                      margin 0.5s ease;
+        }
+
+        /* --- Closed (Icon Only) State --- */
+        #floatingIconLink.closed .fl-text-wrapper {
+          max-width: 0;
+          opacity: 0;
+          margin-left: 0;
+          margin-right: 0;
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
     const buttonElement = document.createElement("a");
     buttonElement.id = "floatingIconLink";
     buttonElement.href = link;
-    buttonElement.target = "_blank"; // Open link in new tab
+    buttonElement.target = "_blank";
 
-    // Check if icon is FontAwesome or a custom SVG/Unicode, and set the HTML accordingly
-    let iconHtml = "";
-    if (icon.startsWith("fa-")) {
-      // If it's a FontAwesome class (e.g., "fa-brands fa-github")
-      iconHtml = `<i class="${icon}"></i>`;
-    } else {
-      // If it's not FontAwesome, treat it as a custom SVG/Unicode
-      iconHtml = `<div>${icon}</div>`;
-    }
+    if (animate) buttonElement.classList.add("animated");
+    if (keepClosed) buttonElement.classList.add("closed");
 
-    buttonElement.innerHTML = `${iconHtml}<span id="openSourceText">${text}</span>`;
-    document.body.appendChild(buttonElement);
+    let iconHtml = icon.startsWith("fa-") ? `<i class="${icon}"></i>` : icon;
 
-    // Main functionality
-    document.addEventListener("DOMContentLoaded", function () {
-      const textElement = document.getElementById("openSourceText");
-      const logoElement = document.querySelector("#floatingIconLink i");
-      const svgElement = document.querySelector("#floatingIconLink svg");
+    buttonElement.innerHTML = `
+      <div class="fl-content">
+        <div class="fl-icon-wrapper">${iconHtml}</div>
+        <div class="fl-text-wrapper">${text}</div>
+      </div>
+    `;
 
-      let text = textElement.textContent;
-      let index = 0;
-      let interval;
+    const mountComponent = () => {
+      document.body.appendChild(buttonElement);
 
-      function updateShadow() {
-        const textWidth = textElement.offsetWidth;
-        const maxWidth = 50;
-        const newWidth = Math.max(maxWidth, textWidth);
-        buttonElement.style.width = `${textWidth + 20}px`;
-        buttonElement.style.borderRadius = "25px";
-        buttonElement.style.boxShadow = `0 4px ${
-          newWidth / 5
-        }px rgba(0, 0, 0, 0.2)`;
-
-        if (index === text.length) {
-          buttonElement.style.borderRadius = "50%";
-          buttonElement.style.boxShadow = `0 4px 6px rgba(0, 0, 0, 0.1)`;
-          buttonElement.style.width = null;
-          icon.startsWith("fa-")
-            ? (logoElement.style.marginRight = "0")
-            : (svgElement.style.marginRight = "0");
-        }
+      if (!keepClosed) {
+        setTimeout(() => {
+          buttonElement.classList.add("closed");
+        }, initialDelay);
       }
-
-      function removeText() {
-        if (index < text.length) {
-          const remainingText = text.slice(index);
-          textElement.innerHTML = `<span style="opacity: 0; transition: opacity 0.2s;">${
-            remainingText[0]
-          }</span>${remainingText.slice(1)}`;
-          index++;
-          updateShadow();
-          setTimeout(() => {
-            textElement.textContent = text.slice(index);
-          }, 200);
-        } else {
-          clearInterval(interval);
-        }
-      }
-
-      setTimeout(() => {
-        interval = setInterval(removeText, animationSpeed);
-      }, initialDelay);
 
       if (disappearAfter) {
         setTimeout(() => {
-          buttonElement.style.display = "none";
+          buttonElement.style.opacity = "0";
+          buttonElement.style.pointerEvents = "none";
+          setTimeout(() => buttonElement.remove(), 400);
         }, disappearAfter);
       }
-    });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mountComponent);
+    } else {
+      mountComponent();
+    }
   }
 
   window.createFloatingIconLink = createFloatingIconLink;

@@ -19,6 +19,7 @@
       backgroundColor: s = "#ffffff",
       textColor: m = "#0f172a",
       effectColor: ec = "#3b82f6",
+      padding: pd = "1px",
       shadowEffect:
         h = "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)",
       initialDelay: b = 2500,
@@ -65,7 +66,7 @@
           transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
                       box-shadow 0.3s ease, 
                       opacity 0.4s ease;
-          padding: 1px;
+          padding: ${pd};
           box-sizing: border-box;
           user-select: none;
         }
@@ -233,6 +234,13 @@
         .fl-popup-link:hover {
           text-decoration: underline;
         }
+        
+        #floatingIconLink .fl-icon-wrapper img {
+          transform: none;
+          border-radius: 0;
+          object-fit: contain;
+        }
+    
         `;
         t.head.appendChild(a);
       }
